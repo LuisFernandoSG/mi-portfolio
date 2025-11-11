@@ -126,7 +126,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
             url: "",
             description: "Bitácora digital para la gestión y seguimiento de proyectos internos en SENARA, optimizando la asignación de recursos y tiempos.",
             stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
-            previewImage: "/public/img/senara.webp"
+            previewImage: "/img/senara.webp"
         },
     ],
     UI: {
@@ -213,7 +213,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
             url: "",
             description: "Digital logbook for managing and tracking internal projects at SENARA, optimizing resource and time allocation.",
             stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
-            previewImage: "/public/img/senara.webp"
+            previewImage: "/img/senara.webp"
         },
 
     ],
