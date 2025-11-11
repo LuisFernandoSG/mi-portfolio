@@ -34,3 +34,26 @@ body::-webkit-scrollbar-thumb {
   background-clip: text;
   text-fill-color: transparent;
 }
+
+@keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Mover -50% asegura el bucle perfecto con contenido duplicado */
+    transform: translateX(-50%); 
+  }
+}
+
+/* Clase de utilidad de Tailwind */
+.animate-scroll {
+  /* Velocidad más rápida para un bucle menos perceptible */
+  animation: scroll-x 20s linear infinite; 
+  /* Necesario para evitar saltos y que los items se mantengan en línea */
+  white-space: nowrap; 
+}
+
+/* Pausar la animación al hacer hover */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}

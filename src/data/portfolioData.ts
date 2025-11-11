@@ -19,6 +19,7 @@ interface Content {
     url: string;
     description: string;
     stack: string[];
+    previewImage?: string;
   }[];
 
   PROFILE: {
@@ -117,13 +118,15 @@ export const CONTENT: Record<'es' | 'en', Content> = {
             name: "Amigo Secreto",
             url: "https://amigo-secreto-client-8plq.vercel.app/",
             description: "Aplicación web responsiva para gestionar intercambios de regalos familiares de forma sencilla y atractiva.",
-            stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"]
+            stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"],
+            previewImage: ""
         },
         {
-            name: "Bitacora SENARA",
+            name: "Bitacora SENARA (Interno)",
             url: "",
             description: "Bitácora digital para la gestión y seguimiento de proyectos internos en SENARA, optimizando la asignación de recursos y tiempos.",
-            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"]
+            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
+            previewImage: "/public/img/senara.webp"
         },
     ],
     UI: {
@@ -202,13 +205,15 @@ export const CONTENT: Record<'es' | 'en', Content> = {
             name: "Secret Santa",
             url: "https://amigo-secreto-client-8plq.vercel.app/",
             description: "Responsive web application for managing family gift exchanges in a simple and attractive way.",
-            stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"]
+            stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"],
+            previewImage: ""
         },
         {
-            name: "SENARA Logbook",
+            name: "SENARA Logbook (Internal)",
             url: "",
             description: "Digital logbook for managing and tracking internal projects at SENARA, optimizing resource and time allocation.",
-            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"]
+            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
+            previewImage: "/public/img/senara.webp"
         },
 
     ],
