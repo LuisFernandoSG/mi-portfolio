@@ -14,9 +14,9 @@ export default defineConfig({
   },
 
   adapter: vercel({
-      // Puedes usar 'serverless' o 'edge'
-      // 'serverless' es más común y fiable
-      mode: 'serverless' 
+    webAnalytics: {
+      enabled: true,
+    },
   }),
 
   integrations: [react()]
