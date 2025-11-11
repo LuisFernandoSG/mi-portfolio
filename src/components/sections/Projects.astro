@@ -1,0 +1,49 @@
+---
+// src/components/sections/Projects.astro
+import { CONTENT } from "../../data/portfolioData";
+import Badge from "../ui/Badge.astro";
+import { AnimatedSection } from "../../components/ui/AnimatedSection.tsx";
+
+// 2. Definir la prop que esperamos recibir
+interface Props {
+    content: typeof CONTENT['es']; // Usamos typeof para inferir la estructura
+}
+
+const { content } = Astro.props;
+
+// 3. Usar 'content' en lugar de importaciones directas
+const PROJECTS = content.PROJECTS;
+const UI = content.UI;
+---
+
+
+<section id="proyectos" class="max-w-3xl mx-auto px-6 py-16">
+  <AnimatedSection client:visible>
+    <h3 class="text-3xl font-bold text-sky-400 mb-12">{UI.projectsTitle}</h3>
+  </AnimatedSection>
+
+  <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
+    {PROJECTS.map((project, index) => (
+      <AnimatedSection client:visible delay={index * 0.2}>
+        <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 shadow-lg 
+                    hover:bg-gray-800 hover:border-gray-600 transition-all duration-300">
+          
+          <h4 class="text-xl font-bold text-white mb-2">{project.name}</h4>
+          <time class="text-sm text-gray-400 mb-4 block">{project.period}</time>
+
+          <ul class="list-disc pl-5 space-y-2 text-gray-300 mb-6">
+            {project.description.map((desc) => (
+              <li>{desc}</li>
+            ))}
+          </ul>
+
+          <div class="flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <Badge>{tech}</Badge>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+    ))}
+  </div>
+</section>

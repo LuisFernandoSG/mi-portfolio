@@ -1,0 +1,33 @@
+---
+// src/components/sections/Experience.astro
+import { AnimatedSection } from "../../components/ui/AnimatedSection.tsx";
+import type { CONTENT } from "../../data/portfolioData";
+// Importamos el nuevo componente de React
+import Accordion from "../../components/ui/Accordion.tsx"; 
+
+interface Props {
+    content: typeof CONTENT['es']; 
+}
+
+const { content } = Astro.props;
+const EXPERIENCE = content.EXPERIENCE;
+const UI = content.UI;
+
+// Convertimos la experiencia en el formato esperado por el componente de React
+const accordionItems = EXPERIENCE.map((job, index) => ({
+    ...job,
+    id: `job-${index + 1}`
+}));
+---
+
+<section id="experiencia" class="max-w-3xl mx-auto px-6 py-16">
+  <AnimatedSection client:visible>
+    <h3 class="text-3xl font-bold text-sky-400 mb-12">{UI.experienceTitle}</h3>
+  </AnimatedSection>
+
+  <Accordion 
+    items={accordionItems}
+    client:visible
+  />
+
+</section>

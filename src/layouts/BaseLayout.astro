@@ -1,0 +1,28 @@
+---
+// src/layouts/BaseLayout.astro
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+import '../styles/global.css';
+// import '../styles/custom-components.css'; 
+// ¡IMPORTANTE! EL HEADER FUE ELIMINADO DE AQUÍ PARA EVITAR DUPLICIDAD
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Portfolio de Luis Salguero" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-900 text-gray-100 selection:bg-sky-500 selection:text-gray-900">
+    <slot />
+  </body>
+</html>

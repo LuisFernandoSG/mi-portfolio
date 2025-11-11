@@ -1,0 +1,59 @@
+---
+// src/pages/index.astro
+
+// 1. OBLIGAR a renderizar en el servidor para acceder a Astro.request.headers (cookies)
+export const prerender = false; 
+
+import { CONTENT, DEFAULT_LANG } from '../data/portfolioData'; 
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Experience from '../components/sections/Experience.astro';
+import Projects from '../components/sections/Projects.astro';
+import Skills from '../components/sections/Skills.astro';
+import Header from '../components/Header.astro'; 
+import Websites from '../components/sections/Websites.astro';
+
+// === FUNCIÓN PARA LEER COOKIE EN EL SERVIDOR (ASTRO) ===
+const getCookieFromHeader = (cookieHeader: string | null, name: string): string | null => {
+    if (!cookieHeader) return null;
+    const cookies = cookieHeader.split(';');
+    for (const cookie of cookies) {
+        const parts = cookie.split('=');
+        const key = parts[0].trim();
+        const value = parts[1] ? parts[1].trim() : '';
+
+        if (key === name) {
+            return value;
+        }
+    }
+    return null;
+}
+// =======================================================
+
+// 2. Lógica de selección de Idioma
+let lang: 'es' | 'en' = DEFAULT_LANG;
+
+const cookieHeader = Astro.request.headers.get('cookie');
+const savedLang = getCookieFromHeader(cookieHeader, 'portfolioLang');
+
+// Obtenemos las claves válidas y comprobamos que el idioma guardado sea válido
+const validLangs = Object.keys(CONTENT) as Array<'es' | 'en'>;
+
+if (savedLang && validLangs.includes(savedLang as 'es' | 'en')) {
+    lang = savedLang as 'es' | 'en';
+}
+// 3. Obtenemos el contenido (currentContent NUNCA será undefined aquí)
+const currentContent = CONTENT[lang];
+
+---
+
+<BaseLayout title={`Portafolio | ${currentContent.PROFILE.name}`}>
+  <Header content={currentContent} /> 
+  <main>
+    <Hero content={currentContent} />
+    <Experience content={currentContent} /> 
+    <Projects content={currentContent} />
+    <Skills content={currentContent} />
+	 <Websites content={currentContent} />
+  </main>
+</BaseLayout>

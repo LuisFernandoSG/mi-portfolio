@@ -1,0 +1,36 @@
+@import "tailwindcss";
+/* src/styles/global.css */
+
+html {
+  /* Esto hace que el scroll sea suave al hacer clic en los enlaces del header */
+  scroll-behavior: smooth;
+  
+  /* Esto agrega un 'padding' superior al hacer scroll.
+     Evita que los títulos de sección queden ocultos
+     detrás del header pegajoso (sticky).
+     Ajusta '5rem' si cambias la altura del header. */
+  scroll-padding-top: 5rem; 
+}
+
+/* Un pequeño estilo para la barra de scroll (opcional, pero se ve bien) */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: theme('colors.gray.800');
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: theme('colors.sky.600');
+  border-radius: 20px;
+}
+
+.titulo-degradado {
+  /* ¡Importante! Aquí la función theme() sí es procesada. */
+  background: linear-gradient(45deg, theme('colors.sky.400'), theme('colors.cyan.300'));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}

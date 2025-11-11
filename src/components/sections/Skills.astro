@@ -1,0 +1,45 @@
+---
+// src/components/sections/Skills.astro
+import { AnimatedSection } from "../../components/ui/AnimatedSection.tsx";
+import Badge from "../ui/Badge.astro";
+import type { CONTENT } from "../../data/portfolioData";
+
+interface Props {
+    content: typeof CONTENT['es']; 
+}
+
+const { content } = Astro.props;
+
+const SKILLS = content.SKILLS;
+const UI = content.UI;
+---
+
+<section id="habilidades" class="max-w-3xl mx-auto px-6 py-16">
+  <AnimatedSection client:visible>
+    <h3 class="text-3xl font-bold text-sky-400 mb-8">{UI.skillsTitle}</h3>
+    
+    <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6">
+      
+      <div class="mb-6">
+        <h4 class="text-xl font-semibold mb-4 text-white">{UI.devTitle}</h4>
+        <div class="flex flex-wrap gap-2">
+          {SKILLS.dev.map((skill) => <Badge>{skill}</Badge>)}
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="text-xl font-semibold mb-4 text-white">{UI.dbTitle}</h4>
+        <div class="flex flex-wrap gap-2">
+          {SKILLS.databases.map((skill) => <Badge>{skill}</Badge>)}
+        </div>
+      </div>
+
+      <div class="mb-0">
+        <h4 class="text-xl font-semibold mb-4 text-white">{UI.biTitle}</h4>
+        <div class="flex flex-wrap gap-2">
+          {SKILLS.bi.map((skill) => <Badge>{skill}</Badge>)}
+        </div>
+      </div>
+    </div>
+  </AnimatedSection>
+</section>

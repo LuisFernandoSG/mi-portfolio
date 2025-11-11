@@ -1,0 +1,59 @@
+---
+// src/components/sections/Hero.astro
+// 1. Importar el tipo Content
+import type { CONTENT } from "../../data/portfolioData";
+import { AnimatedSection } from "../../components/ui/AnimatedSection.tsx";
+
+// 2. Definir la prop que esperamos recibir
+interface Props {
+    content: typeof CONTENT['es']; // Usamos typeof para inferir la estructura
+}
+
+const { content } = Astro.props;
+
+// 3. Usar 'content' en lugar de importaciones directas
+const PROFILE = content.PROFILE;
+const CONTACT = content.CONTACT;
+const UI = content.UI;
+---
+
+<section id="inicio" class="max-w-3xl mx-auto px-6 py-24 md:py-32">
+  <AnimatedSection client:visible>
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+      {/* Notar el cambio en cómo se accede al nombre */}
+      {PROFILE.Greeting} <span class="titulo-degradado">{PROFILE.name}</span>
+    </h1>
+  </AnimatedSection>
+  
+  <AnimatedSection client:visible delay={0.2}>
+    <h2 class="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">
+      {PROFILE.title}
+    </h2>
+  </AnimatedSection>
+
+  <AnimatedSection client:visible delay={0.4}>
+    <p class="text-lg text-gray-400 mb-8">
+      {PROFILE.summary}
+    </p>
+  </AnimatedSection>
+
+  <AnimatedSection client:visible delay={0.6}>
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a 
+        href={`mailto:${CONTACT.email}`}
+        class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center"
+      >
+        {UI.contactButton} {/* Usamos el texto de UI */}
+      </a>
+      <a 
+        href={`https://${CONTACT.linkedin}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center"
+      >
+        {UI.linkedinButton} {/* Usamos el texto de UI */}
+      </a>
+    </div>
+  </AnimatedSection>
+
+</section>

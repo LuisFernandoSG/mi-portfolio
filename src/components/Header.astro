@@ -1,0 +1,49 @@
+---
+// src/components/Header.astro
+import LanguageToggle from './ui/LanguageToggle.tsx';
+import { CONTENT } from "../data/portfolioData"; 
+type ContentType = typeof CONTENT;
+
+interface Props {
+    // Es posible que content sea undefined en la primera carga si SSR falla.
+    content: ContentType['es'] | undefined; 
+}
+
+const { content } = Astro.props;
+
+// BLINDAJE: Si content es undefined, usamos el español por defecto.
+const safeContent = content || CONTENT.es; 
+
+// Usamos safeContent para acceder a UI
+const NAV_LINKS = [
+  { href: "#inicio", text: safeContent.UI.homeLink }, 
+  { href: "#experiencia", text: safeContent.UI.experienceTitle }, 
+  { href: "#proyectos", text: safeContent.UI.projectsTitle },
+  { href: "#habilidades", text: safeContent.UI.skillsTitle },
+];
+---
+<header class="sticky top-0 z-50 w-full px-6 py-4
+               bg-gray-900/70 backdrop-blur-lg 
+               border-b border-gray-700/50">
+  <div class="max-w-5xl mx-auto flex justify-between items-center">
+    <a href="#inicio" class="text-xl font-bold text-sky-400 hover:text-sky-300 transition-colors">
+      LS.dev
+    </a>
+
+    <div class="flex items-center gap-6">
+      <nav class="hidden sm:flex gap-6">
+        {NAV_LINKS.map((link) => (
+          <a 
+            href={link.href} 
+            class="text-gray-300 hover:text-sky-400 transition-colors"
+          >
+            {link.text}
+          </a>
+        ))}
+      </nav>
+
+      <LanguageToggle client:load /> 
+    </div>
+
+  </div>
+</header>
