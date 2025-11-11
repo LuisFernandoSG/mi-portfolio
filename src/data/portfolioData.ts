@@ -119,6 +119,12 @@ export const CONTENT: Record<'es' | 'en', Content> = {
             description: "Aplicación web responsiva para gestionar intercambios de regalos familiares de forma sencilla y atractiva.",
             stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"]
         },
+        {
+            name: "Bitacora SENARA",
+            url: "",
+            description: "Bitácora digital para la gestión y seguimiento de proyectos internos en SENARA, optimizando la asignación de recursos y tiempos.",
+            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"]
+        },
     ],
     UI: {
         homeLink: "Inicio",
@@ -197,6 +203,12 @@ export const CONTENT: Record<'es' | 'en', Content> = {
             url: "https://amigo-secreto-client-8plq.vercel.app/",
             description: "Responsive web application for managing family gift exchanges in a simple and attractive way.",
             stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"]
+        },
+        {
+            name: "SENARA Logbook",
+            url: "",
+            description: "Digital logbook for managing and tracking internal projects at SENARA, optimizing resource and time allocation.",
+            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"]
         },
 
     ],
