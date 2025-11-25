@@ -6,7 +6,7 @@ import { AnimatedSection } from "../../components/ui/AnimatedSection.tsx";
 
 // 2. Definir la prop que esperamos recibir
 interface Props {
-    content: typeof CONTENT['es']; // Usamos typeof para inferir la estructura
+  content: (typeof CONTENT)["es"]; // Usamos typeof para inferir la estructura
 }
 
 const { content } = Astro.props;
@@ -21,10 +21,11 @@ const UI = content.UI;
   <AnimatedSection client:visible>
     <h1 class="text-4xl md:text-6xl font-bold mb-4">
       {/* Notar el cambio en cómo se accede al nombre */}
-      {PROFILE.Greeting} <span class="titulo-degradado">{PROFILE.name}</span>
+      {PROFILE.Greeting}
+      <span class="titulo-degradado">{PROFILE.name}</span>
     </h1>
   </AnimatedSection>
-  
+
   <AnimatedSection client:visible delay={0.2}>
     <h2 class="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">
       {PROFILE.title}
@@ -39,21 +40,30 @@ const UI = content.UI;
 
   <AnimatedSection client:visible delay={0.6}>
     <div class="flex flex-col sm:flex-row gap-4">
-      <a 
+      <a
         href={`mailto:${CONTACT.email}`}
         class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center"
       >
-        {UI.contactButton} {/* Usamos el texto de UI */}
+        {UI.contactButton}
+        {/* Usamos el texto de UI */}
       </a>
-      <a 
+      <a
         href={`https://${CONTACT.linkedin}`}
         target="_blank"
         rel="noopener noreferrer"
         class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center"
       >
-        {UI.linkedinButton} {/* Usamos el texto de UI */}
+        {UI.linkedinButton}
+        {/* Usamos el texto de UI */}
+      </a>
+      <a
+        href={CONTACT.resume}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center"
+      >
+        {UI.resumeButton}
       </a>
     </div>
   </AnimatedSection>
-
 </section>

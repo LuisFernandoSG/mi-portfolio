@@ -33,6 +33,7 @@ interface Content {
     email: string;
     phone: string;
     linkedin: string;
+    resume?: string;
   };
   SKILLS: {
     dev: string[];
@@ -45,6 +46,7 @@ interface Content {
     homeLink: string; // <-- CLAVE NECESARIA
     contactButton: string;
     linkedinButton: string;
+    resumeButton?: string;
     experienceTitle: string;
     projectsTitle: string;
     skillsTitle: string;
@@ -71,6 +73,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
       email: "Ifsalguerog@gmail.com",
       phone: "8311-9080",
       linkedin: "www.linkedin.com/in/lfsalguerog",
+      resume: "pdf/Luis_Salguero_Guzman_CV.pdf",
     },
     SKILLS: {
       dev: ["JavaScript", "Node.js", "React", "Redux", "Socket.IO", "PHP", "HTML", "CSS", "Tailwind", "Bootstrap", "Oracle APEX"],
@@ -133,6 +136,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
         homeLink: "Inicio",
         contactButton: "Contáctame",
         linkedinButton: "LinkedIn",
+        resumeButton: "Descargar CV",
         experienceTitle: "Experiencia Profesional",
         projectsTitle: "Proyectos Destacados",
         skillsTitle: "Habilidades Técnicas",
@@ -158,6 +162,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
       email: "Ifsalguerog@gmail.com",
       phone: "8311-9080",
       linkedin: "www.linkedin.com/in/lfsalguerog",
+      resume: "pdf/Luis_Salguero_Guzman_Resume.pdf",
     },
     SKILLS: {
       dev: ["JavaScript", "Node.js", "React", "Redux", "Socket.IO", "PHP", "HTML", "CSS", "Tailwind", "Bootstrap", "Oracle APEX"],
@@ -221,6 +226,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
         homeLink: "Home",
         contactButton: "Contact Me",
         linkedinButton: "LinkedIn",
+        resumeButton: "Download Resume",
         experienceTitle: "Professional Experience",
         projectsTitle: "Featured Projects",
         skillsTitle: "Technical Skills",
