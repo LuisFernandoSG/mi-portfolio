@@ -45,8 +45,8 @@ const CarouselItem: React.FC<{ site: SiteItem }> = ({ site }) => {
             );
         }
 
-        // --- 2. Capa: IFRAME (Si no hay imagen Y no ha fallado) ---
-        if (!iframeFailed) {
+        // --- 2. Capa: IFRAME (Solo se carga cuando se hace Hover para optimizar RAM al máximo) ---
+        if (!iframeFailed && isHovered) {
             return (
                 <iframe
                     src={site.url}
@@ -60,63 +60,98 @@ const CarouselItem: React.FC<{ site: SiteItem }> = ({ site }) => {
             );
         }
 
-        // --- 3. Capa: FALLBACK SIMPLE (Si la imagen no existe Y el iframe falló) ---
+        // --- 3. Capa: FALLBACK SIMPLE (Si falló el iframe) ---
+        if (iframeFailed) {
+            return (
+                <div 
+                    className={`w-full h-full flex flex-col items-center justify-center p-4 bg-gray-800/80 transition-colors`}
+                >
+                    <XCircle className="w-12 h-12 text-red-500 mb-2" />
+                    <p className="text-sm text-center text-red-400 font-semibold">
+                        Previsualización en vivo no disponible (bloqueada).
+                    </p>
+                    <p className="text-sm text-center text-gray-400 mt-1">{site.name}</p>
+                </div>
+            );
+        }
+
+        // --- 4. Vista previa por defecto optimizada (Previene carga excesiva en memoria y CPU) ---
         return (
-            <div 
-                className={`w-full h-full flex flex-col items-center justify-center p-4 bg-gray-800/80 transition-colors`}
-            >
-                <XCircle className="w-12 h-12 text-red-500 mb-2" />
-                <p className="text-sm text-center text-red-400 font-semibold">
-                    Previsualización en vivo no disponible (bloqueada).
-                </p>
-                <p className="text-sm text-center text-gray-400 mt-1">{site.name}</p>
+            <div className="w-full h-full flex flex-col items-center justify-center p-4 bg-slate-900/60 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-sky-500/30 mb-3 group-hover:text-sky-400/80 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                <p className="text-[10px] text-gray-500 font-mono tracking-wider uppercase select-none">Pasa el cursor para cargar en vivo</p>
             </div>
         );
     };
 
     return (
         <a 
-            href={site.url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex-shrink-0 w-80 h-96 mx-4 relative overflow-hidden rounded-xl shadow-2xl 
-                       transition-all duration-300 transform hover:scale-[1.03] group cursor-pointer"
+            href={site.url || '#'} 
+            target={site.url ? "_blank" : undefined} 
+            rel={site.url ? "noopener noreferrer" : undefined}
+            className="flex-shrink-0 w-80 h-96 mx-4 flex flex-col relative overflow-hidden rounded-2xl glass-card border border-white/10 shadow-2xl hover:border-sky-500/30 transition-all duration-300 hover:scale-[1.02] group cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {/* 1. Contenedor de Previsualización */}
-            <div 
-                className={`absolute inset-0 transition-all duration-500 ease-out ${isHovered ? 'scale-105' : 'scale-100'}`}
-            >
-                {/* Renderiza la previsualización según la lógica de tres capas */}
-                {renderPreviewContent()}
-                
-                {/* Overlay Oscuro para Legibilidad */}
-                <div className="absolute inset-0 bg-gray-900/50 group-hover:bg-gray-900/80 transition-colors"></div>
+            {/* 1. Browser Header Mockup */}
+            <div className="flex gap-1.5 px-4 py-2.5 bg-slate-950/80 border-b border-white/5 items-center flex-shrink-0">
+                <span className="w-2 h-2 rounded-full bg-[#ff5f56] opacity-70 group-hover:opacity-100 transition-opacity"></span>
+                <span className="w-2 h-2 rounded-full bg-[#ffbd2e] opacity-70 group-hover:opacity-100 transition-opacity"></span>
+                <span className="w-2 h-2 rounded-full bg-[#27c93f] opacity-70 group-hover:opacity-100 transition-opacity"></span>
+                <span className="ml-3 text-[10px] font-mono text-gray-500 truncate max-w-[180px]">
+                    {site.url ? site.url.replace('https://', '').replace('/', '') : 'internal-preview'}
+                </span>
             </div>
 
-            {/* 2. Contenido Flotante con Transición (Descripción) */}
+            {/* 2. Preview Content Window */}
+            <div className="relative flex-grow overflow-hidden bg-slate-950/50">
+                {/* Renderiza la previsualización según la lógica de tres capas */}
+                <div className={`absolute inset-0 transition-all duration-500 ease-out ${isHovered ? 'scale-105' : 'scale-100'}`}>
+                    {renderPreviewContent()}
+                </div>
+                
+                {/* Overlay Oscuro para Legibilidad */}
+                <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/80 transition-colors duration-300"></div>
+            </div>
+
+            {/* 3. Slide-up Info Panel */}
             <div 
-                className={`absolute inset-0 flex flex-col justify-end p-6 pt-16 transition-transform duration-500 
-                            ${isHovered ? 'translate-y-0' : 'translate-y-full'}`}
+                className={`absolute inset-x-0 bottom-0 top-[29px] flex flex-col justify-end p-6 transition-all duration-500 ease-in-out
+                            ${isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
                 style={{ 
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    background: 'linear-gradient(to top, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.90) 80%, rgba(2, 6, 23, 0.85) 100%)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
                     whiteSpace: 'normal'
                 }} 
             >
-                <h4 className="text-xl font-bold text-sky-400 mb-2">{site.name}</h4>
-                <p className="text-sm text-gray-300 mb-4">{site.description}</p>
+                <h4 className="text-lg font-bold text-sky-400 mb-1.5">{site.name}</h4>
+                <p className="text-xs text-gray-300 leading-relaxed mb-4">{site.description}</p>
                 
-                <div className="mt-auto pt-2 border-t border-gray-700/50">
-                    <p className="text-xs text-gray-400 font-mono italic">
-                        Stack: <span className="text-gray-200 font-semibold">{renderStack}</span>
-                    </p>
+                <div className="pt-3 border-t border-white/5">
+                    <p className="text-[10px] font-mono text-gray-400 uppercase tracking-wider mb-2">Technologies</p>
+                    <div className="flex flex-wrap gap-1">
+                        {site.stack.map((tech, idx) => (
+                            <span 
+                                key={idx} 
+                                className="bg-sky-500/10 text-sky-300 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-sky-500/20"
+                            >
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* 3. Título visible siempre */}
-            <div className={`absolute bottom-0 left-0 w-full p-4 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
-                <h4 className="text-lg font-semibold text-white truncate">{site.name}</h4>
+            {/* 4. Bottom Default Header (visible when not hovered) */}
+            <div className={`absolute bottom-0 left-0 w-full p-4.5 bg-gradient-to-t from-slate-950/90 to-slate-950/0 transition-all duration-300 flex items-center justify-between ${isHovered ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                <h4 className="text-sm font-semibold text-white truncate">{site.name}</h4>
+                <div className="flex items-center gap-1">
+                    <span className="text-[10px] text-gray-400 font-mono">demo</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping"></span>
+                </div>
             </div>
         </a>
     );

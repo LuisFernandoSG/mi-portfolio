@@ -19,10 +19,24 @@ import '../styles/global.css';
     <meta name="description" content="Portfolio de Luis Salguero" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Google Fonts: Outfit (headings) and Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-900 text-gray-100 selection:bg-sky-500 selection:text-gray-900">
+  <body class="font-body bg-slate-950 text-gray-200 antialiased selection:bg-sky-500/30 selection:text-sky-300">
+    <!-- Ambient Background Light Orbs -->
+    <div class="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(15,23,42,0.6),rgba(2,6,23,1))]"></div>
+      <div class="absolute top-[-15%] left-[-15%] h-[600px] w-[600px] rounded-full bg-sky-500/10 blur-[130px] animate-pulse" style="animation-duration: 8s;"></div>
+      <div class="absolute bottom-[-15%] right-[-15%] h-[600px] w-[600px] rounded-full bg-violet-600/10 blur-[130px] animate-pulse" style="animation-duration: 12s;"></div>
+      <div class="absolute top-[40%] right-[10%] h-[400px] w-[400px] rounded-full bg-indigo-500/5 blur-[120px]"></div>
+    </div>
+    
     <slot />
   </body>
 </html>

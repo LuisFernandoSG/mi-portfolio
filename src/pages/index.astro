@@ -12,6 +12,8 @@ import Projects from '../components/sections/Projects.astro';
 import Skills from '../components/sections/Skills.astro';
 import Header from '../components/Header.astro'; 
 import Websites from '../components/sections/Websites.astro';
+import Footer from '../components/Footer.astro';
+import Contact from '../components/sections/Contact.astro';
 
 // === FUNCIÓN PARA LEER COOKIE EN EL SERVIDOR (ASTRO) ===
 const getCookieFromHeader = (cookieHeader: string | null, name: string): string | null => {
@@ -55,5 +57,7 @@ const currentContent = CONTENT[lang];
     <Websites content={currentContent} /> 
     <Projects content={currentContent} />
     <Skills content={currentContent} />
+    <Contact content={currentContent} />
   </main>
+  <Footer content={currentContent} />
 </BaseLayout>

@@ -54,6 +54,9 @@ interface Content {
     dbTitle: string; // Títulos para Skills
     biTitle: string; // Títulos para Skills
     websitesTitle: string; // Títulos para Websites
+    contactSectionTitle: string;
+    contactSubtitle: string;
+    whatsappButton: string;
   }
 }
 
@@ -117,33 +120,36 @@ export const CONTENT: Record<'es' | 'en', Content> = {
       }
     ],
     WEBSITES: [
-        {
-            name: "Amigo Secreto",
-            url: "https://amigo-secreto-client-8plq.vercel.app/",
-            description: "Aplicación web responsiva para gestionar intercambios de regalos familiares de forma sencilla y atractiva.",
-            stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"],
-            previewImage: ""
-        },
-        {
-            name: "Bitacora SENARA (Interno)",
-            url: "",
-            description: "Bitácora digital para la gestión y seguimiento de proyectos internos en SENARA, optimizando la asignación de recursos y tiempos.",
-            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
-            previewImage: "/img/senara.webp"
-        },
+      {
+        name: "Amigo Secreto",
+        url: "https://amigo-secreto-client-8plq.vercel.app/",
+        description: "Aplicación web responsiva para gestionar intercambios de regalos familiares de forma sencilla y atractiva.",
+        stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"],
+        previewImage: ""
+      },
+      {
+        name: "Bitacora SENARA (Interno)",
+        url: "",
+        description: "Bitácora digital para la gestión y seguimiento de proyectos internos en SENARA, optimizando la asignación de recursos y tiempos.",
+        stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
+        previewImage: "/img/senara.webp"
+      },
     ],
     UI: {
-        homeLink: "Inicio",
-        contactButton: "Contáctame",
-        linkedinButton: "LinkedIn",
-        resumeButton: "Descargar CV",
-        experienceTitle: "Experiencia Profesional",
-        projectsTitle: "Proyectos Destacados",
-        skillsTitle: "Habilidades Técnicas",
-        devTitle: "Desarrollo y Programación",
-        dbTitle: "Bases de Datos",
-        biTitle: "BI & Reporting Tools",
-        websitesTitle: "Sitios Web & Demos",
+      homeLink: "Inicio",
+
+      linkedinButton: "LinkedIn",
+      resumeButton: "Descargar CV",
+      experienceTitle: "Experiencia Profesional",
+      projectsTitle: "Proyectos Destacados",
+      skillsTitle: "Habilidades Técnicas",
+      devTitle: "Desarrollo y Programación",
+      dbTitle: "Bases de Datos",
+      biTitle: "BI & Reporting Tools",
+      websitesTitle: "Sitios Web & Demos",
+      contactSectionTitle: "Contacto",
+      contactSubtitle: "¿Tienes algún proyecto en mente o quieres trabajar juntos? ¡Hablemos!",
+      whatsappButton: "Escríbeme por WhatsApp",
     }
   },
 
@@ -182,7 +188,7 @@ export const CONTENT: Record<'es' | 'en', Content> = {
           "Administered servers, managing Oracle APEX, ORDS configuration, and Apache Tomcat environments."
         ]
       },
-    {
+      {
         role: "Full Stack Developer ",
         company: "Freelance",
         period: "Jun 2024 - Presente",
@@ -206,34 +212,37 @@ export const CONTENT: Record<'es' | 'en', Content> = {
       }
     ],
     WEBSITES: [ // <-- DATOS EN INGLÉS
-        {
-            name: "Secret Santa",
-            url: "https://amigo-secreto-client-8plq.vercel.app/",
-            description: "Responsive web application for managing family gift exchanges in a simple and attractive way.",
-            stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"],
-            previewImage: ""
-        },
-        {
-            name: "SENARA Logbook (Internal)",
-            url: "",
-            description: "Digital logbook for managing and tracking internal projects at SENARA, optimizing resource and time allocation.",
-            stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
-            previewImage: "/img/senara.webp"
-        },
+      {
+        name: "Secret Santa",
+        url: "https://amigo-secreto-client-8plq.vercel.app/",
+        description: "Responsive web application for managing family gift exchanges in a simple and attractive way.",
+        stack: ["React", "Tailwind CSS", "NodeJS", "Express", "MongoDB"],
+        previewImage: ""
+      },
+      {
+        name: "SENARA Logbook (Internal)",
+        url: "",
+        description: "Digital logbook for managing and tracking internal projects at SENARA, optimizing resource and time allocation.",
+        stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
+        previewImage: "/img/senara.webp"
+      },
 
     ],
     UI: {
-        homeLink: "Home",
-        contactButton: "Contact Me",
-        linkedinButton: "LinkedIn",
-        resumeButton: "Download Resume",
-        experienceTitle: "Professional Experience",
-        projectsTitle: "Featured Projects",
-        skillsTitle: "Technical Skills",
-        devTitle: "Development and Programming",
-        dbTitle: "Databases",
-        biTitle: "BI & Reporting Tools",
-        websitesTitle: "Websites & Demos",
+      homeLink: "Home",
+      contactButton: "Contact Me",
+      linkedinButton: "LinkedIn",
+      resumeButton: "Download Resume",
+      experienceTitle: "Professional Experience",
+      projectsTitle: "Featured Projects",
+      skillsTitle: "Technical Skills",
+      devTitle: "Development and Programming",
+      dbTitle: "Databases",
+      biTitle: "BI & Reporting Tools",
+      websitesTitle: "Websites & Demos",
+      contactSectionTitle: "Contact Me",
+      contactSubtitle: "Have a project in mind or want to collaborate? Let's talk!",
+      whatsappButton: "Chat on WhatsApp",
     }
   }
 };

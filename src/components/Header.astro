@@ -20,30 +20,41 @@ const NAV_LINKS = [
   { href: "#experiencia", text: safeContent.UI.experienceTitle }, 
   { href: "#proyectos", text: safeContent.UI.projectsTitle },
   { href: "#habilidades", text: safeContent.UI.skillsTitle },
+  { href: "#contacto", text: safeContent.UI.contactSectionTitle },
 ];
 ---
-<header class="sticky top-0 z-50 w-full px-6 py-4
-               bg-gray-900/70 backdrop-blur-lg 
-               border-b border-gray-700/50">
-  <div class="max-w-5xl mx-auto flex justify-between items-center">
-    <a href="#inicio" class="text-xl font-bold text-sky-400 hover:text-sky-300 transition-colors">
-      LS.dev
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-4xl px-6 py-3
+               bg-slate-900/35 backdrop-blur-2xl 
+               border-t border-white/25 border-x border-white/10 border-b border-white/5
+               rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.2)]
+               transition-all duration-300 select-none overflow-hidden group">
+  <!-- Gloss reflection layer simulating curved liquid glass -->
+  <div class="absolute top-0 inset-x-0 h-[48%] bg-gradient-to-b from-white/[0.12] to-transparent pointer-events-none rounded-t-full"></div>
+  
+  <div class="relative z-10 flex justify-between items-center">
+    <a href="#inicio" class="text-xl font-bold tracking-tight text-white hover:text-sky-400 transition-colors flex items-center gap-1.5 group/logo">
+      <span class="h-2 w-2 rounded-full bg-sky-400 group-hover/logo:scale-125 transition-transform duration-300"></span>
+      LS<span class="text-sky-400 group-hover/logo:text-sky-300 transition-colors">.dev</span>
     </a>
 
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:flex gap-6">
+    <div class="flex items-center gap-5">
+      <nav class="hidden md:flex items-center gap-1">
         {NAV_LINKS.map((link) => (
           <a 
             href={link.href} 
-            class="text-gray-300 hover:text-sky-400 transition-colors"
+            class="text-xs font-semibold text-gray-300 hover:text-white py-1.5 px-4 rounded-full 
+                   border border-transparent hover:border-white/10 hover:bg-white/[0.06]
+                   hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_16px_-4px_rgba(0,0,0,0.3)]
+                   transition-all duration-200 hover:scale-[1.04] active:scale-[0.97]"
           >
             {link.text}
           </a>
         ))}
       </nav>
 
+      <span class="h-4 w-px bg-white/10 hidden md:block"></span>
+
       <LanguageToggle client:load /> 
     </div>
-
   </div>
 </header>

@@ -1,15 +1,27 @@
 @import "tailwindcss";
 /* src/styles/global.css */
 
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 html {
   /* Esto hace que el scroll sea suave al hacer clic en los enlaces del header */
   scroll-behavior: smooth;
   
-  /* Esto agrega un 'padding' superior al hacer scroll.
-     Evita que los títulos de sección queden ocultos
-     detrás del header pegajoso (sticky).
-     Ajusta '5rem' si cambias la altura del header. */
-  scroll-padding-top: 5rem; 
+  /* Esto agrega un 'padding' superior al hacer scroll. */
+  scroll-padding-top: 6.5rem; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+body {
+  font-family: var(--font-body);
 }
 
 /* Un pequeño estilo para la barra de scroll (opcional, pero se ve bien) */
@@ -18,21 +30,72 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: theme('colors.gray.800');
+  background: #020617;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: theme('colors.sky.600');
+  background-color: rgba(56, 189, 248, 0.25);
   border-radius: 20px;
+  border: 2px solid #020617;
 }
 
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(56, 189, 248, 0.5);
+}
+
+/* Reusable utilities for the redesign */
 .titulo-degradado {
-  /* ¡Importante! Aquí la función theme() sí es procesada. */
-  background: linear-gradient(45deg, theme('colors.sky.400'), theme('colors.cyan.300'));
+  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #6366f1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
+}
+
+.titulo-degradado-violeta {
+  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.glass-card {
+  background: 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(255, 255, 255, 0) 100%),
+    rgba(15, 23, 42, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 15px 35px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-card-hover:hover {
+  background: 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0) 100%),
+    rgba(15, 23, 42, 0.55);
+  border-top-color: rgba(56, 189, 248, 0.4);
+  border-left-color: rgba(56, 189, 248, 0.2);
+  border-right-color: rgba(56, 189, 248, 0.2);
+  border-bottom-color: rgba(56, 189, 248, 0.1);
+  box-shadow: 
+    0 20px 40px -5px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 0 20px 0 rgba(56, 189, 248, 0.15);
+  transform: translateY(-3px);
+}
+
+.timeline-line {
+  background: linear-gradient(to bottom, #38bdf8, #6366f1, transparent);
 }
 
 @keyframes scroll-x {
@@ -48,7 +111,7 @@ body::-webkit-scrollbar-thumb {
 /* Clase de utilidad de Tailwind */
 .animate-scroll {
   /* Velocidad más rápida para un bucle menos perceptible */
-  animation: scroll-x 20s linear infinite; 
+  animation: scroll-x 25s linear infinite; 
   /* Necesario para evitar saltos y que los items se mantengan en línea */
   white-space: nowrap; 
 }
@@ -56,4 +119,25 @@ body::-webkit-scrollbar-thumb {
 /* Pausar la animación al hacer hover */
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+/* Modern pulsing glow dot */
+.pulse-green {
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-green-anim 2s infinite;
+}
+
+@keyframes pulse-green-anim {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
 }
