@@ -5,6 +5,9 @@ import vercel from "@astrojs/vercel/serverless";
 import tailwindcss from '@tailwindcss/vite';
 
 
+import cloudflare from "@astrojs/cloudflare";
+
+
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
@@ -13,12 +16,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  adapter: vercel({
-      // Puedes usar 'serverless' o 'edge'
-      // 'serverless' es más común y fiable
-      // @ts-ignore
-      mode: 'serverless' 
-  }),
+  adapter: cloudflare(),
 
   integrations: [react()]
 });
