@@ -134,10 +134,17 @@ export const CONTENT: Record<'es' | 'en', Content> = {
         stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
         previewImage: "/img/senara.webp"
       },
+      {
+        name: "GalloFilms",
+        url: "https://movies.gallofilms.site/",
+        description: "Una biblioteca en la que puedes crear listas de películas y series de televisión para tener siempre a tu alcance lo que te apetezca ver",
+        stack: ["React", "NodeJS", "Express", "MongoDB"],
+        previewImage: ""
+      },
     ],
     UI: {
       homeLink: "Inicio",
-
+      contactButton: "Contáctame",
       linkedinButton: "LinkedIn",
       resumeButton: "Descargar CV",
       experienceTitle: "Experiencia Profesional",
@@ -225,6 +232,13 @@ export const CONTENT: Record<'es' | 'en', Content> = {
         description: "Digital logbook for managing and tracking internal projects at SENARA, optimizing resource and time allocation.",
         stack: ["React", "Redux", "NodeJS", "Express", "MongoDB", "Socket.IO"],
         previewImage: "/img/senara.webp"
+      },
+      {
+        name: "GalloFilms (Movie Library)",
+        url: "https://movies.gallofilms.site/",
+        description: "A library where you can create lists of movies and TV shows so you always have what you want to watch at your fingertips",
+        stack: ["React", "NodeJS", "Express", "MongoDB"],
+        previewImage: ""
       },
 
     ],
